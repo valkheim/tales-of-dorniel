@@ -1,5 +1,6 @@
 import Perso
-import utils
+import Quests
+import utils as u
 import acts as Acts
 
 class Scenario():
@@ -8,34 +9,58 @@ class Scenario():
         self.choice(act)
 
     def displayQuests(self):
-        utils.pheader()
-        utils.pbody(" Journal des quêtes :")
+        u.clear()
+        u.pheader()
+        u.pbody(" Journal des quêtes :")
         print(' ║ ' + "┄" * 74 + ' ║ ')
-        utils.pbody("[ ] Trouver le trésor du roi")
-        utils.pfooter()
+        for q in self.perso.getQuests():
+            u.pbody(repr(q))
+        u.pfooter()
+        input()
 
     def displayMap(self):
-        utils.clear()
-        print(utils.gf("draw/map"))
+        u.clear()
+        print(u.gf("draw/map"))
         input()
+
+    def displayHelp(self):
+        u.clear()
+        u.pheader()
+        u.pbody(" Aide du jeu :")
+        print(' ║ ' + "┄" * 74 + ' ║ ')
+        u.pbody("Raccourcis :")
+        u.pbody("? : afficher cette aide mais vous l'aurez compris")
+        u.pbody("X : quitter le jeu")
+        u.pbody("J : ouvrir le journal des quêtes")
+        u.pbody("C : afficher la carte")
+        u.pfooter()
+        input()
+
+
+    def quit(self):
+        # save
+        u.clear()
+        print("À bientôt")
+        return False
 
     def choice(self, act):
         while "invalid choice":
             acts = Acts.acts(self)
-            utils.clear()
-            utils.pheader()
-            utils.pbody(acts[act][0])
-            utils.pbody()
+            u.clear()
+            u.pheader()
+            u.pbody(acts[act][0])
+            u.pbody()
             for i, interaction in enumerate(acts[act][1]):
-                utils.pbody("%d. %s" % (i + 1, interaction[0]))
-            choice = utils.pinput()
+                u.pbody("%d. %s" % (i + 1, interaction[0]))
+            choice = u.pinput()
             if choice == "X":
-                return False
+                return self.quit()
             elif choice == "J":
                 self.displayQuests()
-                return True
-            elif choice == "M":
+            elif choice == "C":
                 self.displayMap()
+            elif choice == "?":
+                self.displayHelp()
             try:
                 choice = int(choice)
             except:
@@ -53,4 +78,7 @@ class Scenario():
             else:
                 self.perso = Perso.Wizard(self.perso.name)
         elif act == 1:
+            self.perso.addQuest(Quests.MainQuest)
+        else:
+            pass
             pass

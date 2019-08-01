@@ -1,15 +1,17 @@
 import random
+import Quests
 import utils
 
 class Perso:
     def __init__(self, name = None):
         if name is None: # http://patorjk.com/software/taag/#p=display&f=Bloody&t=Dorniel
             utils.game_init()
-            self.name = utils.pinput("  Mais au fait, quel est ton nom ? ")
+            self.name = utils.pinput("  Mais au fait, quel est ton nom ? ", False)
         else:
             self.name = name
 
-        self.race = self.__class__.__name__
+        self.race = self.getRace(self.__class__.__name__)
+        self.quests = Quests.Quests()
 
         # Base points
         self.life = 100
@@ -34,21 +36,35 @@ class Perso:
         self.potion = 10
         self.heal = 10
 
+    def getRace(self, race):
+        if race == "Dwarf":
+            return "Nain"
+        elif race == "Elf":
+            return "Elfe"
+        elif race == "Wizard":
+            return "Magicien"
+
+    def addQuest(self, q):
+        return self.quests.add(q)
+
+    def getQuests(self):
+        return self.quests.get()
+
     def __str__(self):
         return """
-            Race:
-                %s
-            Skills:
-                Attaque (ATK): %d
-                Défense (DFE): %d
-                Force (STR): %d
-                Armure (ARM): %d
-                Intelligence (INT): %d
-                Archerie (ARC): %d
-                Invocation (INV): %d
-                Destruciton (DES): %d
-                Potions (POT): %d
-                Guérison (HEA): %d""" % (self.race, self.attack, self.defense, self.strength, self.armour, self.intelligence, self.archery, self.invocation, self.defense, self.potion, self.heal)
+            Race
+            ┈┈┈┈ %s
+            Talents
+            ┈┈┈┈ (ATQ) Attaque :       %d
+            ┈┈┈┈ (DEF) Défense :       %d
+            ┈┈┈┈ (FOR) Force :         %d
+            ┈┈┈┈ (ARM) Armure :        %d
+            ┈┈┈┈ (INT) Intelligence :  %d
+            ┈┈┈┈ (ARC) Archerie :      %d
+            ┈┈┈┈ (INV) Invocation :    %d
+            ┈┈┈┈ (DES) Destruciton :   %d
+            ┈┈┈┈ (POT) Potions :       %d
+            ┈┈┈┈ (GUE) Guérison :      %d""" % (self.race, self.attack, self.defense, self.strength, self.armour, self.intelligence, self.archery, self.invocation, self.defense, self.potion, self.heal)
 
 LOW = 2
 HIGH = 5

@@ -18,5 +18,7 @@ def acts(self):
             ]
         ],
         [
+            utils.gf("acts/3/scenario"),
+            []
         ]
     ]

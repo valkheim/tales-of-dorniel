@@ -11,11 +11,11 @@ def clear():
 def gf(filename):
     with open('./resources/'+filename, 'r') as f:
         return f.read()
+def splash():
+    print(gf("draw/splash"))
 
 def game_init():
-    print(gf("draw/splash"))
     input()
-
     pheader()
     pbody("""
       Bonjour jeune aventurier ! Tu pars en quête d'un trésor fabuleux.
@@ -51,9 +51,14 @@ def pbody(s = None):
                 else:
                     pbody(textwrap.fill(l, 74))
 
-def pinput(s = ""):
-    shortcuts = 'X,J,M,?'
-    print(' ║ ' + s.strip() +  (80 - (len(s.strip()) + 6 + len(shortcuts))) * ' ' + shortcuts + ' ║ ')
+def pinput(s = "", displayShortcuts = True):
+    s = s.strip()
+    if displayShortcuts:
+        shortcuts = '?,X,J,C'
+        print(' ║ ' + s +  (80 - (len(s) + 6 + len(shortcuts))) * ' ' + shortcuts + ' ║ ')
+    else:
+        pheader()
+        print(' ║ ' + s +  (80 - len(s) - 6) * ' ' + ' ║ ')
     return input(' ╚═ ')
 
 def pfooter():
