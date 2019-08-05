@@ -2,10 +2,10 @@ import utils as u
 
 class Menu():
     choices = [
-        'C. Continuer',
-        'S. Sauvegarder',
         'J. Journal des quêtes',
         'P. Personnage',
+        'C. Carte(s)',
+        'S. Sauvegarder',
         '?. Aide',
         'Q. Quitter'
     ]
@@ -22,13 +22,13 @@ class Menu():
             u.pbody(c)
         u.pfooter()
         c = input()
-        if c == "1" or c == "C":
-            print("continuer")
+        if c == "3" or c == "C":
+            self.displayMap()
         elif c == "2" or c == "S":
             print("sauvegarder")
-        elif c == "3" or c == "J":
+        elif c == "1" or c == "J":
             self.displayQuests()
-        elif c == "4" or c == "P":
+        elif c == "2" or c == "P":
             self.perso.display()
         elif c == "5" or c == "?":
             self.displayHelp()

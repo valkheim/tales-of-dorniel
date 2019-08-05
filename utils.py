@@ -11,6 +11,7 @@ def clear():
 def gf(filename):
     with open('./resources/'+filename, 'r') as f:
         return f.read()
+
 def splash():
     print(gf("draw/splash"))
 
