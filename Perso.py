@@ -1,17 +1,20 @@
 import random
+import textwrap
 import Quests
-import utils
+import utils as u
 
 class Perso:
     def __init__(self, name = None):
         if name is None: # http://patorjk.com/software/taag/#p=display&f=Bloody&t=Dorniel
-            utils.game_init()
-            self.name = utils.pinput("  Mais au fait, quel est ton nom ? ", False)
+            self.name = u.pinput("Mais au fait, il te faut un nom de Héros ! Lequel choisis-tu ? (Baldur)", False)
+            if self.name == "":
+                self.name = "Baldur"
         else:
             self.name = name
 
         self.race = self.getRace(self.__class__.__name__)
         self.quests = Quests.Quests()
+        self.age = 20
 
         # Base points
         self.life = 100
@@ -65,6 +68,36 @@ class Perso:
             ┈┈┈┈ (DES) Destruciton :   %d
             ┈┈┈┈ (POT) Potions :       %d
             ┈┈┈┈ (GUE) Guérison :      %d""" % (self.race, self.attack, self.defense, self.strength, self.armour, self.intelligence, self.archery, self.invocation, self.defense, self.potion, self.heal)
+
+    def display(self):
+        u.clear()
+        u.pheader()
+        around = int((74 - len(self.name)) / 2) * ' '
+        if len(self.name) % 2:
+            name = self.name + ' '
+        else:
+            name = self.name
+        print(' ║ ' + around + name + around + ' ║ ')
+        u.phr()
+        portrait = [(3,2), u.gf('draw/races/'+self.__class__.__name__.lower())]
+        characteristics = [(40, 2), u.gf("draw/skills").format(
+            u.az(self.life),
+            u.az(self.stamina),
+            u.az(self.magic),
+            u.az(self.attack),
+            u.az(self.defense),
+            u.az(self.strength),
+            u.az(self.armour),
+            u.az(self.intelligence),
+            u.az(self.archery),
+            u.az(self.invocation),
+            u.az(self.defense),
+            u.az(self.potion),
+            u.az(self.heal)
+        )]
+        u.pbody(u.ptiles(portrait, characteristics, dx=74, dy=30))
+        u.pfooter()
+        input()
 
 LOW = 2
 HIGH = 5

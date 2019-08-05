@@ -2,14 +2,15 @@
 
 import Scenario
 import Perso
-import utils
+import utils as u
 
 if __name__ == "__main__":
-    utils.clear()
-    utils.splash()
+    u.clear()
+    u.splash()
     c = input("o-]===> ")
-    utils.clear()
+    u.clear()
     if c == "1":
         print("Mode non disponible")
-    elif c == "2":
+    else:
+        u.game_init()
         Scenario.Scenario(Perso.Perso(), 0)

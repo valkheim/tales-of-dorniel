@@ -1,1 +1,28 @@
-Ah {}, avec un nom comme ça tu dois venir des forêts de Luthzeak !
+Eh bien, je vois que tu as déjà appris quelques petits trucs mais la route est
+encore longue. Veux-tu continuer dans cette voie ?
+
+(PV)  Vie :          {}
+
+(ENR) Énergie :      {}
+
+(MAG) Magie :        {}
+
+(ATQ) Attaque :      {}
+
+(DEF) Défense :      {}
+
+(FOR) Force :        {}
+
+(ARM) Armure :       {}
+
+(INT) Intelligence : {}
+
+(ARC) Archerie :     {}
+
+(INV) Invocation :   {}
+
+(DES) Destruciton :  {}
+
+(POT) Potions :      {}
+
+(GUE) Guérison :     {}

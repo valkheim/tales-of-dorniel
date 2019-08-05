@@ -7,15 +7,16 @@ class Quest():
         self.accomplished = False
 
     def __repr__(self):
-        if self.accomplished is True:
-            return "[ ] " + self.name
+        if self.accomplished:
+            tick = '[x]'
         else:
-            return "[x] " + self.name
+            tick = '[ ]'
+        return "{} {}\n{}".format(tick, self.name, self.description)
 
 class MainQuest(Quest):
     def __init__(self):
-        name = "À l'aube d'une grande aventure"
-        goal = "Retrouver le trésor du roi et son voleur"
+        name = "La paix entre les peuples"
+        goal = "Rapporter la paix entre les peuples de Dorniel."
         description = """
             En retrouvant le trésor de notre bon roi, on me couvrira de
             richesses. Et on tuera probablement le larcineur, m'enfin...
