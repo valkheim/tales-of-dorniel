@@ -3,7 +3,7 @@ import utils as u
 def acts(self):
     return [
         [
-            # Choix des capacités initiales
+            # 0 - Choix des capacités initiales
             [ [ u.gf("acts/0/scenarios/1").format(self.perso.name), True ] ],
             [
                 [ u.gf("acts/0/questions/1"), 1 ],
@@ -12,7 +12,7 @@ def acts(self):
             ]
         ],
         [
-            # Confirmation des capacités
+            # 1 - Confirmation des capacités
             [ [ u.gf("acts/1/scenarios/1").format(self.perso.life,
                 self.perso.stamina, self.perso.magic, self.perso.attack,
                 self.perso.defense, self.perso.strength, self.perso.armour,
@@ -24,24 +24,24 @@ def acts(self):
             ]
         ],
         [
-            # C'est parti, ajout de la quête principale !
+            # 2 - C'est parti, ajout de la quête principale !
             [ [ u.gf("acts/2/scenarios/1"), True ] ],
             [ [ None, 3 ] ]
         ],
         [
-            # Intersection de Haute Garde
+            # 3 - Intersection de Haute Garde
             [
                 [ u.gf("acts/3/scenarios/1"), True ],
                 [ u.gf("draw/intersections/hautegarde"), False ]
             ],
             [
-                [ u.gf("acts/3/questions/1"), 4 ],
-                [ u.gf("acts/3/questions/2"), 3 ],
-                [ u.gf("acts/3/questions/3"), 3 ]
+                [ u.gf("acts/3/questions/1"), 4 ], # Haute Garde
+                [ u.gf("acts/3/questions/2"), 6 ], # Chêneraye
+                [ u.gf("acts/3/questions/3"), 7 ], # Pic Ouette
             ]
         ],
         [
-            # Porte de Haute Garde fermée
+            # 4 - Porte de Haute Garde fermée
             [
                 [ u.gf("acts/4/scenarios/1"), True ],
                 [ u.gf("draw/places/hautegarde/door_closed"), False ]
@@ -52,11 +52,35 @@ def acts(self):
             ]
         ],
         [
-            # Attente à la porte de Haute Garde fermée
+            # 5 - Attente à la porte de Haute Garde fermée
             [
                 [ u.gf("draw/places/hautegarde/door_closed"), False ],
                 [ u.gf("acts/5/scenarios/1"), True ]
             ],
             [ [ None, 4 ] ]
+        ],
+        [
+            # 6 - Arrivée devant la Chêneraye
+            [
+                [ u.gf("acts/6/scenarios/1"), True ],
+                [ u.gf("draw/places/cheneraye/entrance"), False ]
+            ],
+            [ [ None, 8 ] ]
+        ],
+        [
+            # 7 - Panorama de Pic Ouette
+            [
+                [ u.gf("acts/7/scenarios/1"), True ],
+                [ u.gf("draw/places/picouette/landscape"), False ]
+            ],
+            [ [ None, 3 ] ]
+        ],
+        [
+            # last - to be continued
+            [
+                [ u.gf("acts/outro/to_be_continued"), False ]
+            ],
+            [ [ None, 8 ] ]
         ]
+
     ]
